@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Artists{% endblock %}
+
+{% block content %}
+<h1>Artist list</h1>
+
+{% for aArtist in aArtists %}
+    <p>By {{ aArtist.full_name }}</p>
+    <p>Published some other field</p>
+{% endfor %}
+{% endblock %}
