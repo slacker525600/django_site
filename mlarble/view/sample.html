@@ -1,0 +1,73 @@
+<html>
+<head>
+ <title> Luke Taylor is DJ Lisan</title>
+ <script src="https://connect.soundcloud.com/sdk.js"></script>
+ <link rel="stylesheet" type="text/css" href="/css/lukestyle.css" media="screen" />
+</head>
+<body>
+<div id="page">
+ <div id="top-bar">
+   <img src="../resources/trying_1.png" />
+ </div>
+ <div id="content">
+  <div id="left-bar">
+   <ul>
+    <li><a href="https://www.facebook.com/DjLisan" ><img src="../resources/facebook.png" /></a></li>
+    <li><a href="https://twitter.com/djlisan" ><img src="../resources/twitter.png" /></a></li>
+    <li><a href="https://soundcloud.com/dj-lisan/" ><img src="../resources/soundcloud.png" /></a></li>
+    <li><a href="mail:djlisan@gmail.com" ><img src="../resources/bordered_email.png" width="35%" height="15%" /></a></li>
+   </ul>    
+  </div>
+  <div id="right-bar"> 
+   <div id="left-border">&nbsp; </div>
+   <div id="right-inner"> 
+    <div class="header"> DjLisan - <div class="sub">Dance Floor Breaker</div></div>
+    <img id="content-image" src="/resources/scaled_squat_corner_lisan.jpg" \>
+    <p> Based out of the Bay Area DJ Lisan has ad copy</p>
+    <div id="soundcloud">
+     <script>
+      SC.initialize({
+       client_id: '95c851f3bad28797e9e964c9f744a0c3',
+       redirect_uri:'/static/callback.html'//'localhost:8080/static/luke.html'
+      });
+      console.log('here');
+      var track_url = 'https://soundcloud.com/dj-lisan/getting-from-here-to-there'; //'http://soundcloud.com/forss/flickermood';
+      SC.oEmbed(track_url, { auto_play: false }, function(oEmbed) {
+       var eElem = document.getElementById('soundcloud');
+       console.log(oEmbed);
+       var sToAppend = oEmbed.html;
+       if (eElem && oEmbed) {
+        eElem.innerHTML += oEmbed.html;
+        console.log('appended soundcloud element');
+       } else { 
+        console.log('could not find soundcloud element');
+       }
+      });
+      console.log('and here');
+      //https://soundcloud.com/dj-lisan/sets/freshness
+      //consumer_key=apigee&q=dj-lisan&filter=all&order=created_at
+      SC.connect(  function() {
+       console.log('made it here');
+       SC.get('https://api.soundcloud.com/tracks', {consumer_key:'apigee',q:'dj-lisan', filter:'all', order:'created_at'}, 
+        function(playlist) {
+         //groups/55517/tracks
+         console.log('did I make it here?');
+         console.log(playlist);
+         for (var i = 0; i < playlist.tracks.length; i++) {
+            console.log(playlist.tracks[i].length);
+         }
+        } ) ;
+      });
+      console.log('got to the end');
+     </script>
+    </div>
+    <div id="nextlist">
+      I had this set as sub columns, but with the current layout moving the events section to the far right may make sense. 
+    </div>
+   </div>
+  </div>
+  <div id="footer">copyright whatever </div>
+ </div> 
+</div>
+</body>
+</html>

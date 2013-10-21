@@ -6,9 +6,9 @@ from django.contrib import admin
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'mlarble.home.artists', name='home'),
-    #url(r'^testing/', include('testing.foo.urls')),
-
+    url(r'^$', 'mlarble.home.artists', name='artists'),
+    url(r'^testing/', include('testing.foo.urls')),
+    url(r'^home.html', 'mlarble.home.home',name='homepage'),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

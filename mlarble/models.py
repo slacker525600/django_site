@@ -1,8 +1,14 @@
 from django.db import models
 
 class Artist(models.Model):
+    #normally I would name these vars by types ... but since db field names ... and given def to right, ... not
     full_name = models.CharField(max_length=70)
-
+    #could probably be more efficient here, need to check details
+    soundcloud_id = models.CharField(max_length=70) 
+    youtube_id = models.CharField(max_length=70) 
+    facebook_id = models.CharField(max_length=70) 
+    twitter_id = models.CharField(max_length=70) 
+    email_addr = models.CharField(max_length=70) 
     def __unicode__(self):
         return self.full_name
 
