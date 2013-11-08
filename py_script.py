@@ -36,7 +36,7 @@ def add_artist_list():
     else:
       #then add them, 
       dDict = {}
-      for nFieldOn in range(0, len(asFieldNames) - 1):
+      for nFieldOn in range(0, len(asFieldNames)):
         if len(asFieldNames[nFieldOn]) != 0 and asFieldNames[nFieldOn] != 'full_name':
           dDict[asFieldNames[nFieldOn] = asFields[nFieldOn]
       models.add_artist(sName, **dDict)
