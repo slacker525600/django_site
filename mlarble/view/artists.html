@@ -8,5 +8,7 @@
 {% for aArtist in aArtists %}
     <p>By {{ aArtist.full_name }}</p>
     <p>Published some other field</p>
+{% empty %}
+    <p>No artists found in database.</p>
 {% endfor %}
 {% endblock %}

@@ -8,6 +8,6 @@ def home(request):
     return render_to_response('homepage.html', {})
 def artist(request):
     sName = 'djlisan' # will want to use request 
-    aArtist = Artist.objects.filter(full_name__equals=sName)
-    return render_to_response(sample.html, {'aArtist':aArtist})
+    aArtist = Artist.objects.filter(full_name__exact=sName)
+    return render_to_response('artist.html', {'aArtist':aArtist})
 

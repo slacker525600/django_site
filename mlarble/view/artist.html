@@ -1,34 +1,52 @@
-<html>
-<head>
- <title> Luke Taylor is DJ Lisan</title>
- <script src="https://connect.soundcloud.com/sdk.js"></script>
- <link rel="stylesheet" type="text/css" href="/css/lukestyle.css" media="screen" />
-</head>
-<body>
+{% extends "base.html" %}
+
+{% comment %}
+    django template docs found https://docs.djangoproject.com/en/dev/ref/templates/builtins/
+{% endcomment %}
+
+{% block title %} Sample Test
+{% endblock %}
+
+{% block content %}
 <div id="page">
  <div id="top-bar">
-   <img src="../resources/trying_1.png" />
+   {% comment %}
+     would like to allow artist artwork logos to display, need to work on dynamic formatting, or standardized size / whata
+     ie maybe show their youtube banner, ... or something else
+    <img src="../resources/" />
+   {% endcomment %}
+   {% if aArtist.full_name %}
+     {{ aArtist.full_name }}
+   {% endif %}
  </div>
  <div id="content">
   <div id="left-bar">
    <ul>
-    <li><a href="https://www.facebook.com/DjLisan" ><img src="../resources/facebook.png" /></a></li>
-    <li><a href="https://twitter.com/djlisan" ><img src="../resources/twitter.png" /></a></li>
-    <li><a href="https://soundcloud.com/dj-lisan/" ><img src="../resources/soundcloud.png" /></a></li>
-    <li><a href="mail:djlisan@gmail.com" ><img src="../resources/bordered_email.png" width="35%" height="15%" /></a></li>
+   {% if aArtist.facebook_id %}
+    <li><a href="https://www.facebook.com/{{ aArtist.facebook_id }}" ><img src="../resources/facebook.png" /></a></li>
+   {% endif %}
+   {% if aArtist.twitter_id %}
+    <li><a href="https://www.twitter.com/{{ aArtist.twitter_id }}" ><img src="../resources/twitter.png" /></a></li>
+   {% endif %}
+   {% if aArtist.soundcloud_id %}
+    <li><a href="https://www.soundcloud.com/{{ aArtist.soundcloud_id }}" ><img src="../resources/soundcloud.png" /></a></li>
+   {% endif %}
+   {% if aArtist.email_addr %}
+    <li><a href="mail:{{ aArtist.email_addr }}" ><img src="../resources/bordered_email.png" width="35%" height="15%"  /></a></li>
+   {% endif %}
    </ul>    
   </div>
   <div id="right-bar"> 
    <div id="left-border">&nbsp; </div>
    <div id="right-inner"> 
-    <div class="header"> DjLisan - <div class="sub">Dance Floor Breaker</div></div>
+    <div class="header"> {{ aArtist.full_name }} - <div class="sub">{{ aArtist.slogan }}</div></div>
     <img id="content-image" src="/resources/scaled_squat_corner_lisan.jpg" \>
     <p> Based out of the Bay Area DJ Lisan has ad copy</p>
     <div id="soundcloud">
      <script>
       SC.initialize({
        client_id: '95c851f3bad28797e9e964c9f744a0c3',
-       redirect_uri:'/static/callback.html'//'localhost:8080/static/luke.html'
+       redirect_uri:'/static/callback.html'//note need to pull static callback page
       });
       console.log('here');
       var track_url = 'https://soundcloud.com/dj-lisan/getting-from-here-to-there'; //'http://soundcloud.com/forss/flickermood';
@@ -69,5 +87,5 @@
   <div id="footer">copyright whatever </div>
  </div> 
 </div>
-</body>
-</html>
+
+{% endblock %}
